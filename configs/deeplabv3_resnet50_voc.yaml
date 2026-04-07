@@ -1,0 +1,35 @@
+experiment:
+  name: deeplabv3_resnet50_voc
+  output_dir: C:\Users\HIMANSHU\Downloads\651_project\outputs
+  seed: 42
+
+data:
+  root: C:\Users\HIMANSHU\Downloads\651_project\data
+  image_size: 256
+  batch_size: 8
+  num_workers: 4
+  download: false
+  pin_memory: true
+
+model:
+  name: deeplabv3_resnet50
+  num_classes: 21
+  pretrained_backbone: true
+  aux_loss: true
+
+optimizer:
+  name: adamw
+  lr: 0.0001
+  weight_decay: 0.0001
+
+training:
+  epochs: 10
+  device: cuda
+  ignore_index: 255
+  aux_weight: 0.4
+  zero_grad_set_to_none: true
+  track_grad_norm: true
+  grad_norm_type: 2.0
+  use_amp: false
+  max_train_batches:
+  max_val_batches:

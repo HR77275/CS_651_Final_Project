@@ -1,0 +1,18 @@
+# Pascal VOC data
+/data/
+/data/VOCtrainval_11-May-2012.tar
+/data/VOCdevkit/
+
+# Training outputs and checkpoints
+/outputs/
+*.pt
+*.pth
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Local environment files
+.venv/
+venv/
+.env
