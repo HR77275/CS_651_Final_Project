@@ -1,0 +1,36 @@
+experiment:
+  name: deeplabv3_resnet50_ade20k
+  output_dir: outputs
+  seed: 42
+
+data:
+  name: ade20k
+  root: data/ADEChallengeData2016
+  image_size: 256
+  batch_size: 8
+  num_workers: 4
+  download: true
+  pin_memory: true
+
+model:
+  name: deeplabv3_resnet50
+  num_classes: 151
+  pretrained_backbone: true
+  aux_loss: true
+
+optimizer:
+  name: adamw
+  lr: 0.0001
+  weight_decay: 0.0001
+
+training:
+  epochs: 10
+  device: cuda
+  ignore_index: -100
+  aux_weight: 0.4
+  zero_grad_set_to_none: true
+  track_grad_norm: true
+  grad_norm_type: 2.0
+  use_amp: false
+  max_train_batches:
+  max_val_batches:

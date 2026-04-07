@@ -1,10 +1,11 @@
 experiment:
   name: smoke_test_run
-  output_dir: C:\Users\HIMANSHU\Downloads\651_project\outputs
+  output_dir: outputs
   seed: 42
 
 data:
-  root: C:\Users\HIMANSHU\Downloads\651_project\data
+  name: voc
+  root: data
   image_size: 128
   batch_size: 2
   num_workers: 0

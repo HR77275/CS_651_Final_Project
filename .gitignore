@@ -1,7 +1,8 @@
-# Pascal VOC data
+# Dataset roots (VOC, ADE20K, etc.)
 /data/
 /data/VOCtrainval_11-May-2012.tar
 /data/VOCdevkit/
+/data/ADEChallengeData2016.zip
 
 # Training outputs and checkpoints
 /outputs/

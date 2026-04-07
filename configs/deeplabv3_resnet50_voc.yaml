@@ -1,10 +1,11 @@
 experiment:
   name: deeplabv3_resnet50_voc
-  output_dir: C:\Users\HIMANSHU\Downloads\651_project\outputs
+  output_dir: outputs
   seed: 42
 
 data:
-  root: C:\Users\HIMANSHU\Downloads\651_project\data
+  name: voc
+  root: data
   image_size: 256
   batch_size: 8
   num_workers: 4

@@ -18,13 +18,13 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.data import VOCSegmentationConfig, build_voc_dataloaders
+from src.data import build_segmentation_dataloaders
 from src.models import SegmentationModelConfig, build_segmentation_model
 from src.training import StepConfig, build_segmentation_loss, build_optimizer, evaluate_epoch, train_epoch
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Train DeepLabV3 on Pascal VOC from a YAML config.")
+    parser = argparse.ArgumentParser(description="Train DeepLabV3 on a segmentation dataset from a YAML config.")
     parser.add_argument("--config", required=True, help="Path to the YAML config file.")
     return parser.parse_args()
 
@@ -92,16 +92,7 @@ def main() -> None:
         requested_device = "cpu"
     device = torch.device(requested_device)
 
-    loaders = build_voc_dataloaders(
-        VOCSegmentationConfig(
-            data_root=str(data_cfg.get("root", PROJECT_ROOT / "data")),
-            image_size=(int(data_cfg.get("image_size", 256)), int(data_cfg.get("image_size", 256))),
-            batch_size=int(data_cfg.get("batch_size", 8)),
-            num_workers=int(data_cfg.get("num_workers", 4)),
-            download=bool(data_cfg.get("download", False)),
-            pin_memory=bool(data_cfg.get("pin_memory", True)),
-        )
-    )
+    loaders = build_segmentation_dataloaders(data_cfg, project_root=PROJECT_ROOT)
     class_names = loaders["class_names"]
     num_classes = len(class_names)
 
@@ -127,7 +118,7 @@ def main() -> None:
     criterion = build_segmentation_loss(ignore_index=step_config.ignore_index)
 
     output_root = Path(experiment_cfg.get("output_dir", PROJECT_ROOT / "outputs"))
-    run_name = str(experiment_cfg.get("name", "deeplabv3_voc_run"))
+    run_name = str(experiment_cfg.get("name", "deeplabv3_seg_run"))
     run_dir = output_root / run_name
     run_dir.mkdir(parents=True, exist_ok=True)
     shutil.copy2(config_path, run_dir / "config.yaml")
