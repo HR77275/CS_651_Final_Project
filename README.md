@@ -182,17 +182,6 @@ The next phase of the project extends the benchmark to:
 
 That extension is meant to test whether optimizer behavior remains consistent across datasets, modalities, and training regimes.
 
-## Skills highlighted by this repository
-
-From an engineering and portfolio perspective, this project demonstrates:
-
-- experiment-driven deep learning development
-- modular PyTorch pipeline design
-- metric instrumentation and profiling
-- reproducible training through config-based workflows
-- comparative analysis and visualization
-- technical communication through a report-ready research workflow
-
 ## Author
 
 Developed by **Ananya Jha, Himanshu Ranjan, Mayank, and Sethupathy Raghunathan Venkatraman**.
