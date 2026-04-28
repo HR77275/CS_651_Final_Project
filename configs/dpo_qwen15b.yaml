@@ -1,0 +1,39 @@
+experiment:
+  name: dpo_qwen15b_ultrafeedback
+  output_dir: outputs/
+  seed: 42
+
+data:
+  dataset_name: argilla/ultrafeedback-binarized-preferences-cleaned
+  tokenizer_name: Qwen/Qwen2.5-1.5B
+  max_prompt_length: 256
+  max_response_length: 512
+  batch_size: 2
+  num_workers: 4
+
+model:
+  model_name: Qwen/Qwen2.5-1.5B
+  use_lora: true
+  lora_r: 32
+  lora_alpha: 64
+  lora_dropout: 0.05
+  lora_target_modules: ["q_proj", "v_proj"]
+  load_in_4bit: false
+  torch_dtype: bfloat16
+
+optimizer:
+  name: adamw
+  lr: 5.0e-5
+  weight_decay: 0.01
+  betas: [0.9, 0.999]
+
+training:
+  epochs: 3
+  device: cuda
+  beta: 0.1
+  use_amp: false
+  track_grad_norm: true
+  grad_norm_type: 2.0
+  zero_grad_set_to_none: true
+  max_train_batches:
+  max_val_batches:
