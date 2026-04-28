@@ -11,14 +11,6 @@ def build_optimizer(model: nn.Module, config: Mapping[str, Any]) -> torch.optim.
     lr = float(config.get("lr", 1e-4))
     weight_decay = float(config.get("weight_decay", 0.0))
 
-    if name == "adam":
-        return torch.optim.Adam(
-            model.parameters(),
-            lr=lr,
-            weight_decay=weight_decay,
-            betas=tuple(config.get("betas", (0.9, 0.999))),
-        )
-
     if name == "adamw":
         return torch.optim.AdamW(
             model.parameters(),

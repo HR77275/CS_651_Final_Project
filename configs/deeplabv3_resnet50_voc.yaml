@@ -1,5 +1,5 @@
 experiment:
-  name: deeplabv3_resnet50_voc_sgd_50ep
+  name: deeplabv3_resnet50_voc
   output_dir: C:\Users\HIMANSHU\Downloads\651_project\outputs
   seed: 42
 
@@ -18,13 +18,12 @@ model:
   aux_loss: true
 
 optimizer:
-  name: sgd
-  lr: 0.01
+  name: adamw
+  lr: 0.0001
   weight_decay: 0.0001
-  momentum: 0.9
 
 training:
-  epochs: 50
+  epochs: 10
   device: cuda
   ignore_index: 255
   aux_weight: 0.4
