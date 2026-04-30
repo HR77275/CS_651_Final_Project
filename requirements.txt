@@ -9,3 +9,4 @@ accelerate>=0.27
 bitsandbytes>=0.43
 datasets>=2.18
 lion-pytorch>=0.1
+matplotlib>=3.8

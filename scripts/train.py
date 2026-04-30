@@ -129,7 +129,10 @@ def main() -> None:
     output_root = Path(experiment_cfg.get("output_dir", PROJECT_ROOT / "outputs"))
     run_name = str(experiment_cfg.get("name", "deeplabv3_voc_run"))
     run_dir = output_root / run_name
-    run_dir.mkdir(parents=True, exist_ok=True)
+    if run_dir.exists():
+        tqdm.write(f"[warn] Deleting existing run directory: {run_dir}")
+        shutil.rmtree(run_dir)
+    run_dir.mkdir(parents=True)
     shutil.copy2(config_path, run_dir / "config.yaml")
 
     history_path = run_dir / "history.jsonl"
