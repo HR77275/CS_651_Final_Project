@@ -8,10 +8,12 @@ from .step import (
     estimate_parameter_bytes,
     train_step,
 )
+from .dpo_metrics import DPOMetricTracker
 from .dpo_step import DPOStepConfig, dpo_train_step
 from .dpo_epoch import evaluate_dpo_epoch, train_dpo_epoch
 
 __all__ = [
+    "DPOMetricTracker",
     "DPOStepConfig",
     "StepConfig",
     "SegmentationMetricTracker",

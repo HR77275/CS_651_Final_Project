@@ -1,18 +1,50 @@
-# Pascal VOC data
+# ── Datasets ──────────────────────────────────────────────────────────────────
 /data/
-/data/VOCtrainval_11-May-2012.tar
-/data/VOCdevkit/
 
-# Training outputs and checkpoints
+# ── HuggingFace model & dataset cache (set by HF_HOME in sbatch scripts) ──────
+/models/
+
+# ── Training outputs & checkpoints ────────────────────────────────────────────
 /outputs/
 *.pt
 *.pth
+*.ckpt
+*.safetensors
 
-# Python cache
+# ── SLURM job logs ─────────────────────────────────────────────────────────────
+scripts/jobs/
+
+# ── Python ────────────────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+.eggs/
+*.egg-info/
+dist/
+build/
 
-# Local environment files
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Virtual environments ──────────────────────────────────────────────────────
 .venv/
 venv/
+env/
+
+# ── Environment / secrets ─────────────────────────────────────────────────────
 .env
+*.env
+.env.*
+
+# ── Editor ────────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── OS ────────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

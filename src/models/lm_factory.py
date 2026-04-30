@@ -47,7 +47,7 @@ def _load_base_model(config: LMConfig) -> nn.Module:
         return prepare_model_for_kbit_training(model)
 
     dtype = _resolve_dtype(config.torch_dtype)
-    return AutoModelForCausalLM.from_pretrained(config.model_name, torch_dtype=dtype)
+    return AutoModelForCausalLM.from_pretrained(config.model_name, dtype=dtype)
 
 
 def _attach_lora(model: nn.Module, config: LMConfig) -> nn.Module:
@@ -64,7 +64,7 @@ def _attach_lora(model: nn.Module, config: LMConfig) -> nn.Module:
 
 def _build_ref_model(config: LMConfig) -> nn.Module:
     dtype = _resolve_dtype(config.torch_dtype)
-    ref_model = AutoModelForCausalLM.from_pretrained(config.model_name, torch_dtype=dtype)
+    ref_model = AutoModelForCausalLM.from_pretrained(config.model_name, dtype=dtype)
     ref_model.eval()
     for param in ref_model.parameters():
         param.requires_grad_(False)

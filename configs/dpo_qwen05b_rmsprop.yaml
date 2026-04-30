@@ -1,0 +1,40 @@
+experiment:
+  name: dpo_qwen05b_rmsprop
+  output_dir: outputs/
+  seed: 42
+
+data:
+  dataset_name: argilla/ultrafeedback-binarized-preferences-cleaned
+  tokenizer_name: Qwen/Qwen2.5-0.5B
+  max_prompt_length: 256
+  max_response_length: 512
+  batch_size: 4
+  num_workers: 4
+
+model:
+  model_name: Qwen/Qwen2.5-0.5B
+  use_lora: true
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  lora_target_modules: ["q_proj", "v_proj"]
+  load_in_4bit: false
+  torch_dtype: bfloat16
+
+optimizer:
+  name: rmsprop
+  lr: 1.0e-4
+  momentum: 0.0
+  weight_decay: 0.01
+  alpha: 0.99
+
+training:
+  epochs: 3
+  device: cuda
+  beta: 0.1
+  use_amp: false
+  track_grad_norm: true
+  grad_norm_type: 2.0
+  zero_grad_set_to_none: true
+  max_train_batches:
+  max_val_batches:
